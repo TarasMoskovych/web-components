@@ -6,16 +6,42 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Web Components</title>
 
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --color-primary: blue;
+    }
+
+    .highlight {
+      background-color: orange;
+      /* border-bottom: 1px solid blue; */
+    }
+
+    nwc-tooltip {
+      font-weight: 600;
+    }
+  </style>
+
   <script src="tooltip.js"></script>
   <script src="confirm-link.js"></script>
 </head>
 <body>
+  <h2>Tooltip</h2>
   <p>
-    <nwc-tooltip icon="(?)" text="Web Components tooltip text.">Web Components</nwc-tooltip> are awesome!
+    <nwc-tooltip class="important" icon="?" text="Web Components tooltip text.">
+      <span class="highlight">Web Components</span>
+    </nwc-tooltip> are awesome!
   </p>
-  <p>
-    <nwc-tooltip icon="(i)" text="Secong tooltip text." position="right"></nwc-tooltip> lorem ipsum dolor sit amet.
+  <p class="parent">
+    <nwc-tooltip icon="i" position="right"></nwc-tooltip> lorem ipsum dolor sit amet.
   </p>
+  <br>
+
+  <h2>Confirm Link</h2>
   <a is="nwc-confirm-link" href="https://www.google.com/">Google</a>
+  <br>
 </body>
 </html>
