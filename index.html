@@ -25,8 +25,10 @@
     }
   </style>
 
-  <script src="tooltip.js"></script>
-  <script src="confirm-link.js"></script>
+  <!-- Custom web components -->
+  <script src="custom/tooltip.js"></script>
+  <script src="custom/confirm-link.js"></script>
+  <script src="custom/modal.js"></script>
 </head>
 <body>
   <h2>Tooltip</h2>
@@ -41,7 +43,30 @@
   <br>
 
   <h2>Confirm Link</h2>
-  <a is="nwc-confirm-link" href="https://www.google.com/">Google</a>
+  <p>
+    <a is="nwc-confirm-link" href="https://www.google.com/">Google</a>
+  </p>
   <br>
+
+  <h2>Modal</h2>
+  <nwc-modal title-text="Custom title">
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam, nulla!</p>
+    <span slot="actions">
+      <button data-close-modal>Close</button>
+      <button data-close-modal class="confirm-modal-btn">Confirm</button>
+    </span>
+  </nwc-modal>
+  <button class="open-modal-btn">Open</button>
+  <br>
+
+  <script>
+    const modal = document.querySelector('nwc-modal');
+
+    document.querySelector('.open-modal-btn').addEventListener('click', () => modal.open());
+    document.querySelector('.confirm-modal-btn').addEventListener('click', () => console.log('confirm'));
+
+    modal.addEventListener('opened', (e) => console.log(e, 'on_opened'));
+    modal.addEventListener('closed', (e) => console.log(e, 'on_closed'));
+  </script>
 </body>
 </html>
