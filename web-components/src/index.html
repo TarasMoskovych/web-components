@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
   <title>Stencil Component Starter</title>
 
+  <style>
+    .side-nav ul {
+      list-style-type: none;
+    }
+  </style>
+
   <script type="module" src="/build/web-components.esm.js"></script>
   <script nomodule src="/build/web-components.js"></script>
 
@@ -12,6 +18,29 @@
 <body>
 
   <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+  <nwc-side-drawer titletext="Main menu">
+    <nav class="side-nav">
+      <ul>
+        <li>
+          <a href="#">Link 1</a>
+        </li>
+        <li>
+          <a href="#">Link 2</a>
+        </li>
+        <li>
+          <a href="#">Link 3</a>
+        </li>
+      </ul>
+    </nav>
+  </nwc-side-drawer>
 
+  <button class="open-side-menu">Open Side Menu</button>
+
+  <script>
+    const sideDrawer = document.querySelector('nwc-side-drawer');
+
+    document.querySelector('.open-side-menu').addEventListener('click', () => sideDrawer.open());
+
+  </script>
 </body>
 </html>
