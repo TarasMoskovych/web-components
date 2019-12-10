@@ -11,14 +11,14 @@ export class SideDrawer {
   @Prop({ reflect: true }) opened: boolean;
 
   @Method()
-  open() {
+    async open() {
     if (!this.opened) {
       this.opened = true;
     }
   }
 
   @Method()
-  close() {
+  async close() {
     if (this.opened) {
       this.opened = false;
     }
