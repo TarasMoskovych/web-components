@@ -30,6 +30,9 @@ export namespace Components {
     'opened': boolean;
     'titletext': string;
   }
+  interface NwcStockPrice {
+    'symbol': string;
+  }
 }
 
 declare global {
@@ -46,9 +49,16 @@ declare global {
     prototype: HTMLNwcSideDrawerElement;
     new (): HTMLNwcSideDrawerElement;
   };
+
+  interface HTMLNwcStockPriceElement extends Components.NwcStockPrice, HTMLStencilElement {}
+  var HTMLNwcStockPriceElement: {
+    prototype: HTMLNwcStockPriceElement;
+    new (): HTMLNwcStockPriceElement;
+  };
   interface HTMLElementTagNameMap {
     'my-component': HTMLMyComponentElement;
     'nwc-side-drawer': HTMLNwcSideDrawerElement;
+    'nwc-stock-price': HTMLNwcStockPriceElement;
   }
 }
 
@@ -71,10 +81,14 @@ declare namespace LocalJSX {
     'opened'?: boolean;
     'titletext'?: string;
   }
+  interface NwcStockPrice {
+    'symbol'?: string;
+  }
 
   interface IntrinsicElements {
     'my-component': MyComponent;
     'nwc-side-drawer': NwcSideDrawer;
+    'nwc-stock-price': NwcStockPrice;
   }
 }
 
@@ -86,6 +100,7 @@ declare module "@stencil/core" {
     interface IntrinsicElements {
       'my-component': LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
       'nwc-side-drawer': LocalJSX.NwcSideDrawer & JSXBase.HTMLAttributes<HTMLNwcSideDrawerElement>;
+      'nwc-stock-price': LocalJSX.NwcStockPrice & JSXBase.HTMLAttributes<HTMLNwcStockPriceElement>;
     }
   }
 }
