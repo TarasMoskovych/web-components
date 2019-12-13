@@ -30,6 +30,10 @@ export namespace Components {
     'opened': boolean;
     'titletext': string;
   }
+  interface NwcSpinner {
+    'color': string;
+  }
+  interface NwcStockFinder {}
   interface NwcStockPrice {
     'symbol': string;
   }
@@ -50,6 +54,18 @@ declare global {
     new (): HTMLNwcSideDrawerElement;
   };
 
+  interface HTMLNwcSpinnerElement extends Components.NwcSpinner, HTMLStencilElement {}
+  var HTMLNwcSpinnerElement: {
+    prototype: HTMLNwcSpinnerElement;
+    new (): HTMLNwcSpinnerElement;
+  };
+
+  interface HTMLNwcStockFinderElement extends Components.NwcStockFinder, HTMLStencilElement {}
+  var HTMLNwcStockFinderElement: {
+    prototype: HTMLNwcStockFinderElement;
+    new (): HTMLNwcStockFinderElement;
+  };
+
   interface HTMLNwcStockPriceElement extends Components.NwcStockPrice, HTMLStencilElement {}
   var HTMLNwcStockPriceElement: {
     prototype: HTMLNwcStockPriceElement;
@@ -58,6 +74,8 @@ declare global {
   interface HTMLElementTagNameMap {
     'my-component': HTMLMyComponentElement;
     'nwc-side-drawer': HTMLNwcSideDrawerElement;
+    'nwc-spinner': HTMLNwcSpinnerElement;
+    'nwc-stock-finder': HTMLNwcStockFinderElement;
     'nwc-stock-price': HTMLNwcStockPriceElement;
   }
 }
@@ -81,6 +99,12 @@ declare namespace LocalJSX {
     'opened'?: boolean;
     'titletext'?: string;
   }
+  interface NwcSpinner {
+    'color'?: string;
+  }
+  interface NwcStockFinder {
+    'onNwc_symbol_selected'?: (event: CustomEvent<string>) => void;
+  }
   interface NwcStockPrice {
     'symbol'?: string;
   }
@@ -88,6 +112,8 @@ declare namespace LocalJSX {
   interface IntrinsicElements {
     'my-component': MyComponent;
     'nwc-side-drawer': NwcSideDrawer;
+    'nwc-spinner': NwcSpinner;
+    'nwc-stock-finder': NwcStockFinder;
     'nwc-stock-price': NwcStockPrice;
   }
 }
@@ -100,6 +126,8 @@ declare module "@stencil/core" {
     interface IntrinsicElements {
       'my-component': LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
       'nwc-side-drawer': LocalJSX.NwcSideDrawer & JSXBase.HTMLAttributes<HTMLNwcSideDrawerElement>;
+      'nwc-spinner': LocalJSX.NwcSpinner & JSXBase.HTMLAttributes<HTMLNwcSpinnerElement>;
+      'nwc-stock-finder': LocalJSX.NwcStockFinder & JSXBase.HTMLAttributes<HTMLNwcStockFinderElement>;
       'nwc-stock-price': LocalJSX.NwcStockPrice & JSXBase.HTMLAttributes<HTMLNwcStockPriceElement>;
     }
   }

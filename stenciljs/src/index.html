@@ -41,12 +41,17 @@
   <br>
 
   <nwc-stock-price symbol="AAPL"></nwc-stock-price>
+  <br>
+
+  <nwc-stock-finder></nwc-stock-finder>
+  <br>
 
   <script>
     const sideDrawer = document.querySelector('nwc-side-drawer');
+    const stockFinder = document.querySelector('nwc-stock-finder');
 
     document.querySelector('.open-side-menu').addEventListener('click', () => sideDrawer.open());
-
+    stockFinder.addEventListener('nwc_symbol_selected', e => console.log(e));
   </script>
 </body>
 </html>

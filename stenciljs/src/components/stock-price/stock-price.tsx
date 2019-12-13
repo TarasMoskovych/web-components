@@ -1,4 +1,4 @@
-import { Component, h, State, Element, Prop, Watch } from "@stencil/core";
+import { Component, h, State, Element, Prop, Watch, Listen } from "@stencil/core";
 import { AV_API_KEY } from '../../global/configs';
 
 @Component({
@@ -19,9 +19,17 @@ export class StockPrice {
   @State() inputValue: string;
   @State() isValid = false;
   @State() error: string = '';
+  @State() loading = false;
 
   // initialSymbol: string;
   stockInput: HTMLInputElement;
+
+  @Listen('nwc_symbol_selected', { target: 'body' })
+  onSymbolSelected(e: CustomEvent) {
+    if (e.detail && e.detail !== this.symbol) {
+      this.updateData(e.detail);
+    }
+  }
 
   componentWillLoad() {
     console.log('will load hook');
@@ -48,11 +56,16 @@ export class StockPrice {
     }
   }
 
+  hostData() {
+    return { class: this.error ? 'error' : '' };
+  }
+
   render() {
     let content = <p>Price: ${this.data.price} {this.data.symbol}</p>;
     this.isValid = this.inputValue && this.inputValue.trim().length > 0;
 
-    if (this.error) { content = <p>{this.error}</p>; }
+    if (this.error) { content = <p class="error">{this.error}</p>; }
+    if (this.loading) { content = <nwc-spinner color="purple" />; }
 
     return [
       <form onSubmit={this.onFetch.bind(this)}>
@@ -64,7 +77,7 @@ export class StockPrice {
           value={this.inputValue}
           onInput={this.onInput.bind(this)}
         />
-        <button type="submit" disabled={!this.isValid}>Fetch</button>
+        <button type="submit" disabled={!this.isValid || this.loading}>Fetch</button>
         <button type="button" onClick={this.onClear.bind(this)}>Clear</button>
       </form>,
       <div class="content">
@@ -93,6 +106,8 @@ export class StockPrice {
 
   private fetchPrice(symbol: string) {
     this.error = '';
+    this.loading = true;
+
     return fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${AV_API_KEY}`)
       .then(response => {
         if (response.status !== 200) { throw new Error('Invalid'); }
@@ -106,7 +121,8 @@ export class StockPrice {
 
         this.data = { ...this.data, price: price['05. price'] || 0 };
       })
-      .catch(err => this.error = err.message || 'Something wrong!');
+      .catch(err => this.error = err.message || 'Something wrong!')
+      .then(() => this.loading = false);
   }
 
   private updateData(symbol: string) {
