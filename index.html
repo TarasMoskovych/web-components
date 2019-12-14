@@ -11,6 +11,10 @@
       box-sizing: border-box;
     }
 
+    body {
+      padding-bottom: 50px;
+    }
+
     :root {
       --color-primary: blue;
     }
@@ -29,6 +33,9 @@
   <script src="custom/tooltip.js"></script>
   <script src="custom/confirm-link.js"></script>
   <script src="custom/modal.js"></script>
+
+  <!-- Stenciljs dist -->
+  <script src="stenciljs/dist/web-components.js"></script>
 </head>
 <body>
   <h2>Tooltip</h2>
@@ -58,15 +65,53 @@
   </nwc-modal>
   <button class="open-modal-btn">Open</button>
   <br>
+  <br>
+
+  <h2>Side Drawer</h2>
+  <nwc-side-drawer titletext="Main menu">
+    <nav class="side-nav">
+      <ul>
+        <li>
+          <a href="#">Link 1</a>
+        </li>
+        <li>
+          <a href="#">Link 2</a>
+        </li>
+        <li>
+          <a href="#">Link 3</a>
+        </li>
+      </ul>
+    </nav>
+  </nwc-side-drawer>
+
+  <button class="open-side-menu">Open Side Menu</button>
+  <br>
+  <br>
+
+  <h2>Stock Price/Stock Finder</h2>
+  <nwc-stock-price symbol="AAPL"></nwc-stock-price>
+  <br>
+
+  <nwc-stock-finder></nwc-stock-finder>
+  <br>
+
+  <h2>Todo List</h2>
+  <nwc-todo-list></nwc-todo-list>
 
   <script>
     const modal = document.querySelector('nwc-modal');
+    const sideDrawer = document.querySelector('nwc-side-drawer');
+    const stockFinder = document.querySelector('nwc-stock-finder');
+    const todoList = document.querySelector('nwc-todo-list');
 
     document.querySelector('.open-modal-btn').addEventListener('click', () => modal.open());
     document.querySelector('.confirm-modal-btn').addEventListener('click', () => console.log('confirm'));
+    document.querySelector('.open-side-menu').addEventListener('click', () => sideDrawer.open());
 
     modal.addEventListener('opened', (e) => console.log(e, 'on_opened'));
     modal.addEventListener('closed', (e) => console.log(e, 'on_closed'));
+    stockFinder.addEventListener('nwc_symbol_selected', e => console.log(e));
+    todoList.addEventListener('nwc_todo_list_update', e => console.log(e.detail));
   </script>
 </body>
 </html>

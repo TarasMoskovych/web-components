@@ -1,0 +1,176 @@
+:host {
+  background: #fff;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+  display: block;
+  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  position: relative;
+}
+
+header input {
+  background: rgba(0, 0, 0, 0.003);
+  border: none;
+  box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
+  color: #4d4d4d;
+  font-size: 24px;
+  padding: 16px 16px 16px 60px;
+  width: calc(100% - 76px);
+}
+
+header input:focus {
+  outline: none;
+}
+
+.main {
+  position: relative;
+}
+
+.toggle-all {
+  border: none;
+  opacity: 0;
+  position: absolute;
+  text-align: center;
+}
+
+.toggle-all + label {
+  font-size: 0;
+  height: 34px;
+  left: -6px;
+  position: absolute;
+  top: -50px;
+  transform: rotate(90deg);
+  transition: 0.3s;
+  width: 60px;
+}
+
+.toggle-all + label::before {
+  color: #e6e6e6;
+  cursor: pointer;
+  font-size: 22px;
+  padding: 10px 27px;
+  content: "❯";
+}
+
+.toggle-all:checked + label::before {
+  color: #737373;
+}
+
+.list,
+.filters {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list li {
+  border-bottom: 1px solid #ededed;
+  font-size: 24px;
+  position: relative;
+  transition: 0.3s;
+}
+
+.list li:hover {
+  background: #f5f5f5;
+}
+
+.list li:hover .item-remove {
+  display: block;
+}
+
+.item {
+  background-image: url(data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E);
+  background-position: center left;
+  background-repeat: no-repeat;
+  color: #4d4d4d;
+  cursor: pointer;
+  display: block;
+  line-height: 1.2;
+  padding: 15px 15px 15px 60px;
+  transition: color 0.4s;
+  word-break: break-all;
+}
+
+.item-completed {
+  color: #d9d9d9;
+  text-decoration: line-through;
+}
+
+.item-toggle {
+  -webkit-appearance: none;
+  border: none;
+  bottom: 0;
+  cursor: pointer;
+  height: auto;
+  margin: auto 0;
+  opacity: 0;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 40px;
+}
+
+.item-toggle:checked + .item {
+  background-image: url(data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E);
+}
+
+.item-remove {
+  background: none;
+  border: 0;
+  bottom: 0;
+  color: #cc9a9a;
+  cursor: pointer;
+  display: none;
+  font-size: 30px;
+  height: 40px;
+  margin: auto 0;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  transition: color 0.2s ease-out;
+  width: 40px;
+}
+
+.item-remove:focus,
+.item-remove:hover {
+  color: #af5b5e;
+  outline: none;
+}
+
+.item-remove::after {
+  content: "×";
+}
+
+footer {
+  border-top: 1px solid #e6e6e6;
+  color: #777;
+  display: flex;
+  justify-content: space-between;
+  height: 20px;
+  padding: 10px 15px;
+  text-align: center;
+}
+
+.filters {
+  display: flex;
+}
+
+.filters li {
+  cursor: pointer;
+  padding: 0 5px;
+}
+
+.filters li.active {
+  border-bottom: 1px solid #777;
+  color: #000;
+}
+
+.clear-completed {
+  cursor: pointer;
+}
+
+.clear-completed:hover {
+  text-decoration: underline;
+}
+
+.invisible {
+  visibility: hidden;
+}

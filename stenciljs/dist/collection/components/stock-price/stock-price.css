@@ -1,0 +1,49 @@
+:host {
+  border: 2px solid purple;
+  display: block;
+  max-width: 100%;
+  padding: 2rem;
+  width: 25rem;
+}
+
+:host(.error) {
+  border-color: red;
+}
+
+form input {
+  font: inherit;
+  color: purple;
+  padding: .1rem .25rem;
+}
+
+form input:focus,
+form button:focus {
+  outline: none;
+}
+
+form button {
+  background: purple;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font: inherit;
+  margin-left: 5px;
+  padding: .25rem .5rem;
+}
+
+form button[disabled] {
+  background: #999;
+  cursor: not-allowed;
+}
+
+form button:hover:not([disabled]) {
+  background: #7e0a27;
+}
+
+form button:active {
+  transform: scale(1.1);
+}
+
+.content p {
+  font-weight: 700;
+}
