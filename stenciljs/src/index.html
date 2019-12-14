@@ -46,12 +46,16 @@
   <nwc-stock-finder></nwc-stock-finder>
   <br>
 
+  <nwc-todo-list></nwc-todo-list>
+
   <script>
     const sideDrawer = document.querySelector('nwc-side-drawer');
     const stockFinder = document.querySelector('nwc-stock-finder');
+    const todoList = document.querySelector('nwc-todo-list');
 
     document.querySelector('.open-side-menu').addEventListener('click', () => sideDrawer.open());
     stockFinder.addEventListener('nwc_symbol_selected', e => console.log(e));
+    todoList.addEventListener('nwc_todo_list_update', e => console.log(e.detail));
   </script>
 </body>
 </html>

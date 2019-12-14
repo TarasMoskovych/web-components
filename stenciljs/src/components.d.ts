@@ -7,7 +7,9 @@
 
 
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
-
+import {
+  Task,
+} from './components/todo-list/todo-list';
 
 export namespace Components {
   interface MyComponent {
@@ -36,6 +38,9 @@ export namespace Components {
   interface NwcStockFinder {}
   interface NwcStockPrice {
     'symbol': string;
+  }
+  interface NwcTodoList {
+    'namespace': string;
   }
 }
 
@@ -71,12 +76,19 @@ declare global {
     prototype: HTMLNwcStockPriceElement;
     new (): HTMLNwcStockPriceElement;
   };
+
+  interface HTMLNwcTodoListElement extends Components.NwcTodoList, HTMLStencilElement {}
+  var HTMLNwcTodoListElement: {
+    prototype: HTMLNwcTodoListElement;
+    new (): HTMLNwcTodoListElement;
+  };
   interface HTMLElementTagNameMap {
     'my-component': HTMLMyComponentElement;
     'nwc-side-drawer': HTMLNwcSideDrawerElement;
     'nwc-spinner': HTMLNwcSpinnerElement;
     'nwc-stock-finder': HTMLNwcStockFinderElement;
     'nwc-stock-price': HTMLNwcStockPriceElement;
+    'nwc-todo-list': HTMLNwcTodoListElement;
   }
 }
 
@@ -108,6 +120,10 @@ declare namespace LocalJSX {
   interface NwcStockPrice {
     'symbol'?: string;
   }
+  interface NwcTodoList {
+    'namespace'?: string;
+    'onNwc_todo_list_update'?: (event: CustomEvent<Task[]>) => void;
+  }
 
   interface IntrinsicElements {
     'my-component': MyComponent;
@@ -115,6 +131,7 @@ declare namespace LocalJSX {
     'nwc-spinner': NwcSpinner;
     'nwc-stock-finder': NwcStockFinder;
     'nwc-stock-price': NwcStockPrice;
+    'nwc-todo-list': NwcTodoList;
   }
 }
 
@@ -129,6 +146,7 @@ declare module "@stencil/core" {
       'nwc-spinner': LocalJSX.NwcSpinner & JSXBase.HTMLAttributes<HTMLNwcSpinnerElement>;
       'nwc-stock-finder': LocalJSX.NwcStockFinder & JSXBase.HTMLAttributes<HTMLNwcStockFinderElement>;
       'nwc-stock-price': LocalJSX.NwcStockPrice & JSXBase.HTMLAttributes<HTMLNwcStockPriceElement>;
+      'nwc-todo-list': LocalJSX.NwcTodoList & JSXBase.HTMLAttributes<HTMLNwcTodoListElement>;
     }
   }
 }
